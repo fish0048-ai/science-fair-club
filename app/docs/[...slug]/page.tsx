@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { MarkdownView } from "@/components/MarkdownView";
 import { getDoc } from "@/lib/content";
-import { findNavBySlug, NAV } from "@/lib/nav";
+import { classSlug, findNavBySlug, NAV } from "@/lib/nav";
 
 export function generateStaticParams() {
   return NAV.filter((item) => item.href.startsWith("/docs/")).map((item) => ({
@@ -24,6 +24,9 @@ export default async function DocPage({
       <section className="hero">
         <h1>{doc.title}</h1>
         <p>{doc.group} · 可直接投影或列印本章學習單</p>
+        <p>
+          <a href={`/class/${classSlug(item)}`}>用上課模式投影本章</a>
+        </p>
       </section>
       <MarkdownView markdown={doc.markdown} />
     </>

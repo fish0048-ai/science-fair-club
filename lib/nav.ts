@@ -94,3 +94,17 @@ export function findNavBySlug(slug: string[]) {
   const href = `/docs/${slug.join("/")}`;
   return NAV.find((item) => item.href === href);
 }
+
+export function classSlug(item: NavItem) {
+  if (item.href === "/") return "overview";
+  return item.href.replace("/docs/", "");
+}
+
+export function findNavByClassSlug(slug: string) {
+  if (slug === "overview") return NAV.find((item) => item.href === "/");
+  return NAV.find((item) => item.href === `/docs/${slug}`);
+}
+
+export function classLessons() {
+  return NAV.filter((item) => item.group === "總覽" || item.group === "前期講義");
+}

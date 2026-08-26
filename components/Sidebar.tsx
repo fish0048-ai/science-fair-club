@@ -14,6 +14,12 @@ export function Sidebar() {
         國中科展社團
       </Link>
       <div className="brand-sub">對齊全國科展的 17 週講義</div>
+      <Link
+        href="/class"
+        className={`nav-link class-entry${pathname.startsWith("/class") ? " active" : ""}`}
+      >
+        上課模式
+      </Link>
       {groups.map((group) => (
         <div key={group}>
           <div className="nav-group">{group}</div>
