@@ -15,6 +15,7 @@ alwaysApply: true
 | AI 守則 | `content/ai/guardrails.md` |
 | 教師指定問答 | `content/ai/allowed-questions.md`（維持「問／答」格式） |
 | 上課投影 | `/class`（`app/class/`、`components/ClassPlayer.tsx`） |
+| 列印講義 | `/print`（封面＋班級／座號／姓名，A4） |
 | 網站閱讀頁 | `app/`、`components/`、`lib/` |
 
 講義是知識庫本體；不要複製一份到別的資料夾以免不同步。`lib/nav.ts` 有新章才要加導覽。
@@ -22,6 +23,7 @@ alwaysApply: true
 ## 產品行為
 
 - 上課模式：大字投影、← → 翻頁、T 計時 120 分、對齊該週教學流程；不要拿掉快捷鍵。
+- 列印講義：`/print` 必須有封面與班級／座號／姓名；A4；學生版去掉教師備課清單。
 - `/api/chat` 只檢索本站檔案 + 指定問題；超出範圍要拒絕，禁止上網當萬能機器人。
 - 前 8 週講義已定；第 9–16 週等學生主題再寫，不要預先鎖死實驗步驟。
 

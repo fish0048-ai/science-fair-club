@@ -26,6 +26,8 @@ export default async function DocPage({
         <p>{doc.group} · 可直接投影或列印本章學習單</p>
         <p>
           <a href={`/class/${classSlug(item)}`}>用上課模式投影本章</a>
+          {"　"}
+          <a href={`/print/${classSlug(item)}`}>列印本章（含封面）</a>
         </p>
       </section>
       <MarkdownView markdown={doc.markdown} />

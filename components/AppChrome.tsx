@@ -7,7 +7,7 @@ import { Sidebar } from "@/components/Sidebar";
 
 export function AppChrome({ children }: { children: ReactNode }) {
   const pathname = usePathname();
-  if (pathname.startsWith("/class")) {
+  if (pathname.startsWith("/class") || pathname.startsWith("/print")) {
     return <>{children}</>;
   }
 

@@ -20,6 +20,12 @@ export function Sidebar() {
       >
         上課模式
       </Link>
+      <Link
+        href="/print"
+        className={`nav-link${pathname.startsWith("/print") ? " active" : ""}`}
+      >
+        列印講義
+      </Link>
       {groups.map((group) => (
         <div key={group}>
           <div className="nav-group">{group}</div>

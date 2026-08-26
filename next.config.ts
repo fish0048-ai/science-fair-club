@@ -5,7 +5,8 @@ const nextConfig: NextConfig = {
     "/": ["./content/**/*", "./國中科展社團課程/**/*"],
     "/api/chat": ["./content/**/*", "./國中科展社團課程/**/*"],
     "/class": ["./content/**/*", "./國中科展社團課程/**/*"],
-    "/class/[slug]": ["./content/**/*", "./國中科展社團課程/**/*"],
+    "/print": ["./content/**/*", "./國中科展社團課程/**/*"],
+    "/print/[slug]": ["./content/**/*", "./國中科展社團課程/**/*"],
   },
 };
 

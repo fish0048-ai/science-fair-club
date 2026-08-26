@@ -1,0 +1,58 @@
+import Link from "next/link";
+import { printSlug, studentLectureItems } from "@/lib/print";
+import { NAV } from "@/lib/nav";
+
+export default function PrintIndexPage() {
+  const weeks = studentLectureItems();
+  const extras = NAV.filter((item) => item.group === "附錄" || item.group === "總覽");
+
+  return (
+    <div className="print-home">
+      <header>
+        <p>A4 列印　含封面與班級／座號／姓名</p>
+        <h1>列印講義</h1>
+        <p>建議用「列印 → 另存 PDF」或直接印成紙本。封面欄位可先填，也可留白給學生手寫。</p>
+        <Link href="/">回閱讀模式</Link>
+      </header>
+
+      <section>
+        <h2>整本發給學生</h2>
+        <div className="print-pick-grid">
+          <Link href="/print/full" className="print-pick featured">
+            <span>推薦</span>
+            <strong>第 1–8 週講義全冊</strong>
+            <em>封面＋班級座號姓名＋八章講義</em>
+          </Link>
+          <Link href="/print/worksheets" className="print-pick">
+            <strong>學習單彙整</strong>
+            <em>封面＋附錄 B 全部學習單</em>
+          </Link>
+        </div>
+      </section>
+
+      <section>
+        <h2>只印單週</h2>
+        <div className="print-pick-grid">
+          {weeks.map((item) => (
+            <Link key={item.href} href={`/print/${printSlug(item)}`} className="print-pick">
+              <strong>{item.title}</strong>
+              <em>單章封面＋講義</em>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section>
+        <h2>其他</h2>
+        <div className="print-pick-grid">
+          {extras.map((item) => (
+            <Link key={item.href} href={`/print/${printSlug(item)}`} className="print-pick">
+              <strong>{item.title}</strong>
+              <em>單份列印</em>
+            </Link>
+          ))}
+        </div>
+      </section>
+    </div>
+  );
+}
