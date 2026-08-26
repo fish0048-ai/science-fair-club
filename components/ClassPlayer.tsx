@@ -5,6 +5,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { currentFlowStep, type FlowStep, type Slide } from "@/lib/slides";
+import { stripTeacherCues } from "@/lib/studentContent";
 
 const CLASS_MINUTES = 120;
 
@@ -51,13 +52,16 @@ export function ClassPlayer({
   const [running, setRunning] = useState(false);
   const [elapsed, setElapsed] = useState(0);
 
-  const visible = useMemo(
-    () =>
-      hideTeacher
-        ? slides.filter((slide) => slide.kind !== "teacher" && slide.kind !== "flow")
-        : slides,
-    [hideTeacher, slides],
-  );
+  const visible = useMemo(() => {
+    const filtered = hideTeacher
+      ? slides.filter((slide) => slide.kind !== "teacher" && slide.kind !== "flow")
+      : slides;
+    if (!hideTeacher) return filtered;
+    return filtered.map((slide) => ({
+      ...slide,
+      markdown: stripTeacherCues(slide.markdown),
+    }));
+  }, [hideTeacher, slides]);
 
   const safeIndex = Math.min(index, Math.max(0, visible.length - 1));
   const slide = visible[safeIndex];
@@ -156,7 +160,7 @@ export function ClassPlayer({
       {nowStep && running && (
         <div className="class-now">
           現在時段 {nowStep.start}–{nowStep.end} 分：{nowStep.activity}
-          {nowStep.note ? `（${nowStep.note}）` : ""}
+          {!hideTeacher && nowStep.note ? `（${nowStep.note}）` : ""}
         </div>
       )}
 
