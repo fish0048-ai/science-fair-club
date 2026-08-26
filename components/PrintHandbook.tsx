@@ -1,8 +1,15 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import {
+  BODY_PAGE_HEIGHT_MM,
+  BODY_PAGE_WIDTH_MM,
+  chapterStartPages,
+  estimateBlockPages,
+  pxPerMm,
+} from "@/lib/printPages";
 
 export type PrintChapter = {
   title: string;
@@ -44,6 +51,46 @@ export function PrintHandbook({
   const [name, setName] = useState("");
   const year = useMemo(() => "115", []);
   const showToc = chapters.length > 1;
+  const sheetRef = useRef<HTMLDivElement>(null);
+  const tocRef = useRef<HTMLElement>(null);
+  const chapterRefs = useRef<(HTMLElement | null)[]>([]);
+  const [pageMap, setPageMap] = useState<number[]>(() => chapters.map(() => 0));
+
+  const measurePages = useCallback(() => {
+    if (!showToc) return;
+    const unit = pxPerMm();
+    const pageHeightPx = BODY_PAGE_HEIGHT_MM * unit;
+    const printWidthPx = BODY_PAGE_WIDTH_MM * unit;
+    const tocPages = tocRef.current ? estimateBlockPages(tocRef.current, pageHeightPx, printWidthPx) : 1;
+    const chapterPages = chapters.map((_, index) => {
+      const node = chapterRefs.current[index];
+      return node ? estimateBlockPages(node, pageHeightPx, printWidthPx) : 1;
+    });
+    const next = chapterStartPages(tocPages, chapterPages);
+    setPageMap((prev) => (prev.length === next.length && prev.every((value, index) => value === next[index]) ? prev : next));
+  }, [chapters, showToc]);
+
+  useLayoutEffect(() => {
+    measurePages();
+  }, [measurePages]);
+
+  useEffect(() => {
+    const sheet = sheetRef.current;
+    const images = sheet ? Array.from(sheet.querySelectorAll("img")) : [];
+    const onReady = () => measurePages();
+    images.forEach((image) => {
+      if (!image.complete) image.addEventListener("load", onReady);
+    });
+    window.addEventListener("beforeprint", onReady);
+    window.addEventListener("resize", onReady);
+    const fonts = document.fonts?.ready.then(onReady);
+    return () => {
+      images.forEach((image) => image.removeEventListener("load", onReady));
+      window.removeEventListener("beforeprint", onReady);
+      window.removeEventListener("resize", onReady);
+      void fonts;
+    };
+  }, [measurePages]);
 
   return (
     <div className="print-app">
@@ -51,7 +98,7 @@ export function PrintHandbook({
         <div>
           <strong>列印講義</strong>
           <p>
-            封面沒有頁碼，內文從 1 起編。空白欄位可留給學生手寫。紙張選 A4 直向；請關閉瀏覽器預設的「頁首與頁尾」，以免多印網址，頁碼會由講義樣式自動出現。
+            封面沒有頁碼，內文從 1 起編；目錄會列出各章起始頁碼。空白欄位可留給學生手寫。紙張選 A4 直向；請關閉瀏覽器預設的「頁首與頁尾」，以免多印網址。
           </p>
         </div>
         <div className="print-toolbar-fields">
@@ -80,7 +127,7 @@ export function PrintHandbook({
         </div>
       </div>
 
-      <div className="print-sheet">
+      <div className="print-sheet" ref={sheetRef}>
         <section className="print-cover">
           <div className="print-cover-frame">
             <p className="print-cover-kicker">{year} 學年度　自然領域社團</p>
@@ -123,26 +170,51 @@ export function PrintHandbook({
 
         <div className="print-body">
           {showToc ? (
-            <nav className="print-toc" aria-label="目錄">
+            <nav className="print-toc" aria-label="目錄" ref={tocRef}>
               <header className="print-running">
                 <strong>{title}</strong>
                 <span>{identityLine(klass, seat, name)}</span>
               </header>
               <img className="print-ornament" src="/handbook/chapter-ornament.jpg" alt="" />
               <h2>目錄</h2>
+              <div className="print-toc-head">
+                <span>章名</span>
+                <span>頁碼</span>
+              </div>
               <ol>
-                {chapters.map((chapter, index) => (
-                  <li key={`${chapter.title}-${index}`}>
-                    <span>{chapter.title}</span>
-                    <em>{chapter.group}</em>
-                  </li>
-                ))}
+                {chapters.map((chapter, index) => {
+                  const page = pageMap[index];
+                  const pageLabel = page ? String(page) : "";
+                  return (
+                    <li key={`${chapter.title}-${index}`}>
+                      <a
+                        className="print-toc-link"
+                        href={`#print-ch-${index}`}
+                        aria-label={page ? `${chapter.title}，第 ${page} 頁` : chapter.title}
+                      >
+                        <span className="print-toc-text">
+                          <span className="print-toc-title">{chapter.title}</span>
+                          <span className="print-toc-group">{chapter.group}</span>
+                        </span>
+                        <span className="print-toc-leader" aria-hidden="true" />
+                        <span className="print-toc-page">{pageLabel}</span>
+                      </a>
+                    </li>
+                  );
+                })}
               </ol>
             </nav>
           ) : null}
 
           {chapters.map((chapter, index) => (
-            <section key={`${chapter.title}-${index}`} className="print-chapter">
+            <section
+              key={`${chapter.title}-${index}`}
+              id={`print-ch-${index}`}
+              className="print-chapter"
+              ref={(node) => {
+                chapterRefs.current[index] = node;
+              }}
+            >
               <header className="print-running">
                 <strong>{title}</strong>
                 <span>{identityLine(klass, seat, name)}</span>
