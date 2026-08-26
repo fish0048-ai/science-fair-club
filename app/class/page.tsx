@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { pickClassArtForHref } from "@/lib/classArt";
 import { classLessons, classSlug, NAV } from "@/lib/nav";
 
 export default function ClassHomePage() {
@@ -18,24 +19,32 @@ export default function ClassHomePage() {
 
       <h2>選本週要上的課</h2>
       <div className="class-cards">
-        {lessons.map((item, index) => (
-          <Link key={item.href} href={`/class/${classSlug(item)}`} className="class-card">
-            <span>{item.group === "總覽" ? "總覽" : `第 ${index} 週`}</span>
-            <strong>{item.title}</strong>
-            <em>開始上課</em>
-          </Link>
-        ))}
+        {lessons.map((item, index) => {
+          const art = pickClassArtForHref(item.href, item.title);
+          return (
+            <Link key={item.href} href={`/class/${classSlug(item)}`} className="class-card">
+              <img src={art.src} alt="" />
+              <span>{item.group === "總覽" ? "總覽" : `第 ${index} 週`}</span>
+              <strong>{item.title}</strong>
+              <em>開始上課</em>
+            </Link>
+          );
+        })}
       </div>
 
       <h2>附錄（需要時再投影）</h2>
       <div className="class-cards compact">
-        {extras.map((item) => (
-          <Link key={item.href} href={`/class/${classSlug(item)}`} className="class-card">
-            <span>附錄</span>
-            <strong>{item.title}</strong>
-            <em>開始投影</em>
-          </Link>
-        ))}
+        {extras.map((item) => {
+          const art = pickClassArtForHref(item.href, item.title);
+          return (
+            <Link key={item.href} href={`/class/${classSlug(item)}`} className="class-card">
+              <img src={art.src} alt="" />
+              <span>附錄</span>
+              <strong>{item.title}</strong>
+              <em>開始投影</em>
+            </Link>
+          );
+        })}
       </div>
     </div>
   );

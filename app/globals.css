@@ -331,7 +331,7 @@ a:hover { text-decoration: underline; }
 .class-card {
   background: #1b2940;
   color: #f4ecdf;
-  padding: 20px;
+  padding: 0 0 18px;
   border-radius: 16px;
   min-height: 150px;
   display: flex;
@@ -339,7 +339,23 @@ a:hover { text-decoration: underline; }
   gap: 8px;
   text-decoration: none;
   border: 1px solid #314560;
+  overflow: hidden;
 }
+
+.class-card img {
+  width: 100%;
+  height: 110px;
+  object-fit: cover;
+  display: block;
+}
+
+.class-card span,
+.class-card strong,
+.class-card em {
+  padding: 0 20px;
+}
+
+.class-card span { padding-top: 12px; }
 
 .class-card:hover {
   text-decoration: none;
@@ -462,7 +478,7 @@ a:hover { text-decoration: underline; }
 
 .class-slide {
   overflow: auto;
-  padding: 24px 6vw 40px;
+  padding: 24px 5vw 40px;
 }
 
 .class-slide-label {
@@ -471,11 +487,54 @@ a:hover { text-decoration: underline; }
   letter-spacing: 0.04em;
 }
 
+.class-art-hero {
+  display: block;
+  width: 100%;
+  max-width: 1100px;
+  max-height: 32vh;
+  margin: 0 auto 18px;
+  object-fit: cover;
+  border-radius: 16px;
+  border: 1px solid #314560;
+}
+
+.class-slide-body {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.class-slide.has-art .class-slide-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 32%);
+  gap: 28px;
+  align-items: start;
+}
+
+.class-art-wrap {
+  margin: 0;
+  position: sticky;
+  top: 8px;
+}
+
+.class-art-wrap .class-art {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 14px;
+  border: 1px solid #314560;
+}
+
 .class-doc {
   max-width: 1100px;
   margin: 0 auto;
   font-size: 1.35rem;
   line-height: 1.7;
+}
+
+.class-slide.has-art .class-doc {
+  max-width: none;
+  margin: 0;
 }
 
 .class-doc h1 { font-size: 2.4rem; margin-top: 0; }
@@ -561,6 +620,9 @@ a:hover { text-decoration: underline; }
   .class-doc { font-size: 1.1rem; }
   .class-foot { grid-template-columns: 1fr 1fr; }
   .class-dots { grid-column: 1 / -1; }
+  .class-slide.has-art .class-slide-body { grid-template-columns: 1fr; }
+  .class-art-wrap { position: static; order: -1; }
+  .class-art-hero { max-height: 24vh; }
 }
 
 .print-home {

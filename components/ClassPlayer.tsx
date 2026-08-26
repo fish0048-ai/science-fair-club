@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { pickClassArt } from "@/lib/classArt";
 import { currentFlowStep, type FlowStep, type Slide } from "@/lib/slides";
 import { stripTeacherCues } from "@/lib/studentContent";
 
@@ -130,6 +131,8 @@ export function ClassPlayer({
   }
 
   const remaining = CLASS_MINUTES * 60 - elapsed;
+  const art = pickClassArt(slide);
+  const heroLayout = slide.kind === "title" || slide.kind === "goals";
 
   return (
     <div className="class-shell">
@@ -180,13 +183,23 @@ export function ClassPlayer({
           </nav>
         )}
 
-        <section className="class-slide" aria-live="polite">
+        <section className={`class-slide${heroLayout ? " is-title" : " has-art"}`} aria-live="polite">
           <p className="class-slide-label">
             {safeIndex + 1} / {visible.length}　{slide.heading}
           </p>
-          <article className="class-doc">
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>{slide.markdown}</ReactMarkdown>
-          </article>
+          {heroLayout ? (
+            <img className="class-art class-art-hero" src={art.src} alt={art.alt} />
+          ) : null}
+          <div className="class-slide-body">
+            <article className="class-doc">
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>{slide.markdown}</ReactMarkdown>
+            </article>
+            {heroLayout ? null : (
+              <figure className="class-art-wrap">
+                <img className="class-art" src={art.src} alt={art.alt} />
+              </figure>
+            )}
+          </div>
         </section>
       </div>
 
