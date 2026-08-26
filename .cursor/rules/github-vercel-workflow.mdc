@@ -9,14 +9,15 @@ alwaysApply: true
 
 **只要這次對話改了檔案，任務結束前一定要 `commit` + `git push origin main`，不必再問。**
 
-遠端固定為 `https://github.com/fish0048-ai/science-fair-club` 的 `main`。push 成功後 Vercel 才會自動更新網站。
+遠端固定為 `https://github.com/fish0048-ai/science-fair-club` 的 `main`。
+正式網站：`https://science-fair-club.vercel.app/`（已接 GitHub）。push 成功後 Vercel 會自動更新。
 
 ## 必做步驟
 
 1. `git status` / `git diff` 確認變更；不要加入 `.env`、`.env.local`、`node_modules`、`.next`。
 2. 繁中 commit：`<type>: <主旨>`（`feat` `fix` `docs` `chore`）。
 3. `git push origin main`。
-4. 回覆附上 GitHub 連結。若尚未串 Vercel，提醒一次匯入：https://vercel.com/new/import?s=https://github.com/fish0048-ai/science-fair-club
+4. 回覆附上 GitHub 與線上網站：https://science-fair-club.vercel.app/
 
 未 push 就等於沒同步。不要等使用者再說「幫我推上去」。
 

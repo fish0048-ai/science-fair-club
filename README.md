@@ -1,6 +1,7 @@
 # 國中科展社團課｜講義網站
 
-GitHub：https://github.com/fish0048-ai/science-fair-club
+GitHub：https://github.com/fish0048-ai/science-fair-club  
+線上網站：https://science-fair-club.vercel.app/
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/import?s=https://github.com/fish0048-ai/science-fair-club)
 
@@ -8,12 +9,10 @@ GitHub：https://github.com/fish0048-ai/science-fair-club
 
 ## GitHub ↔ Vercel 自動同步
 
-1. **一次匯入（若尚未連接）**：用 GitHub 登入 Vercel，匯入同一個 repo  
-   https://vercel.com/new/import?s=https://github.com/fish0048-ai/science-fair-club  
-   Production Branch 選 `main`。
-2. **之後**：只要有更新並 push 到 `main`，Vercel 會自動重新部署。
-3. **Cursor 規定**：每次改完檔案都必須自動 commit 並 push GitHub，不必再下「幫我推上去」。未同步時，專案 hook 會在對話結束再催一次。
-4. 規則檔：`.cursor/rules/`；自動催促腳本：`.cursor/hooks.json`
+- **GitHub**：https://github.com/fish0048-ai/science-fair-club（`main`）
+- **Vercel 正式網址**：https://science-fair-club.vercel.app/（已與 GitHub 連接）
+- 之後只要 push `main`，網站會自動更新。不必再手動上傳，也不必再走一次匯入。
+- Cursor 每次改完檔案都必須自動 commit 並 push；規則在 `.cursor/rules/`，催促腳本在 `.cursor/hooks.json`。
 
 ## 本機預覽
 
