@@ -1,8 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
+import { LessonMarkdown } from "@/components/LessonMarkdown";
 import { hasTeacherContent, stripTeacherSections } from "@/lib/studentContent";
 
 export function MarkdownView({
@@ -30,9 +29,7 @@ export function MarkdownView({
           <span>教學流程與備課清單預設不顯示，學生講義也不會印出這些段落。</span>
         </p>
       ) : null}
-      <article className="doc">
-        <ReactMarkdown remarkPlugins={[remarkGfm]}>{text}</ReactMarkdown>
-      </article>
+      <LessonMarkdown markdown={text} className="doc" />
     </>
   );
 }

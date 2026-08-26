@@ -191,7 +191,7 @@ export function ClassPlayer({
             <img className="class-art class-art-hero" src={art.src} alt={art.alt} />
           ) : null}
           <div className="class-slide-body">
-            <article className="class-doc">
+            <article className={`class-doc${slide.kind === "worksheet" ? " is-worksheet" : ""}`}>
               <ReactMarkdown remarkPlugins={[remarkGfm]}>{slide.markdown}</ReactMarkdown>
             </article>
             {heroLayout ? null : (

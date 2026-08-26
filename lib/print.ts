@@ -23,7 +23,7 @@ export function findPrintBundle(slug: string): { title: string; subtitle: string
     if (!item) return null;
     return {
       title: "國中科展社團課學習單",
-      subtitle: "第 1–8 週學習單彙整",
+      subtitle: "第 1–8 週＋選修 E　每張可填寫、可撕下繳交",
       items: [item],
     };
   }

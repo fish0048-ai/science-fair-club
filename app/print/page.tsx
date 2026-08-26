@@ -25,7 +25,7 @@ export default function PrintIndexPage() {
           </Link>
           <Link href="/print/worksheets" className="print-pick">
             <strong>學習單彙整</strong>
-            <em>封面＋附錄 B 全部學習單</em>
+            <em>封面＋可填寫學習單（含班級座號姓名欄）</em>
           </Link>
         </div>
       </section>

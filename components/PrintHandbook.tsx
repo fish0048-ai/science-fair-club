@@ -1,8 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
+import { LessonMarkdown } from "@/components/LessonMarkdown";
 import {
   BODY_PAGE_HEIGHT_MM,
   BODY_PAGE_WIDTH_MM,
@@ -51,6 +50,7 @@ export function PrintHandbook({
   const [name, setName] = useState("");
   const year = useMemo(() => "115", []);
   const showToc = chapters.length > 1;
+  const worksheetPack = /學習單/.test(title) && !/講義/.test(title);
   const sheetRef = useRef<HTMLDivElement>(null);
   const tocRef = useRef<HTMLElement>(null);
   const chapterRefs = useRef<(HTMLElement | null)[]>([]);
@@ -98,7 +98,9 @@ export function PrintHandbook({
         <div>
           <strong>列印講義</strong>
           <p>
-            封面沒有頁碼，內文從 1 起編；目錄會列出各章起始頁碼。空白欄位可留給學生手寫。紙張選 A4 直向；請關閉瀏覽器預設的「頁首與頁尾」，以免多印網址。
+            {worksheetPack
+              ? "每一張學習單會從新的一頁開始，方便影印撕下。請用正楷填班級、座號、姓名；教師蓋章欄留給老師。紙張選 A4 直向，並關閉瀏覽器預設「頁首與頁尾」。"
+              : "封面沒有頁碼，內文從 1 起編；目錄會列出各章起始頁碼。空白欄位可留給學生手寫。紙張選 A4 直向；請關閉瀏覽器預設的「頁首與頁尾」，以免多印網址。"}
           </p>
         </div>
         <div className="print-toolbar-fields">
@@ -210,7 +212,7 @@ export function PrintHandbook({
             <section
               key={`${chapter.title}-${index}`}
               id={`print-ch-${index}`}
-              className="print-chapter"
+              className={`print-chapter${worksheetPack ? " print-worksheet-pack" : ""}`}
               ref={(node) => {
                 chapterRefs.current[index] = node;
               }}
@@ -219,15 +221,19 @@ export function PrintHandbook({
                 <strong>{title}</strong>
                 <span>{identityLine(klass, seat, name)}</span>
               </header>
-              <img className="print-ornament" src="/handbook/chapter-ornament.jpg" alt="" />
-              <p className="print-chapter-kicker">
-                {chapter.group}
-                <span aria-hidden="true"> · </span>
-                {index + 1} / {chapters.length}
-              </p>
-              <article className="print-doc">
-                <ReactMarkdown remarkPlugins={[remarkGfm]}>{chapter.markdown}</ReactMarkdown>
-              </article>
+              {worksheetPack ? null : (
+                <img className="print-ornament" src="/handbook/chapter-ornament.jpg" alt="" />
+              )}
+              {worksheetPack ? (
+                <p className="print-chapter-kicker">請用正楷填寫　一張一張繳交亦可</p>
+              ) : (
+                <p className="print-chapter-kicker">
+                  {chapter.group}
+                  <span aria-hidden="true"> · </span>
+                  {index + 1} / {chapters.length}
+                </p>
+              )}
+              <LessonMarkdown markdown={chapter.markdown} className="print-doc" />
             </section>
           ))}
         </div>
