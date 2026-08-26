@@ -1,5 +1,9 @@
 # 國中科展社團課｜講義網站
 
+GitHub：https://github.com/fish0048-ai/science-fair-club
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/fish0048-ai/science-fair-club)
+
 17 週國中科展社團講義（對齊台灣全國中小學科學展覽會評審標準），可部署到 **Vercel**。右下角 AI 助教**只根據本站知識庫與教師指定問題**回答，不會當成萬能機器人。
 
 ## 本機預覽
