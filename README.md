@@ -2,9 +2,17 @@
 
 GitHub：https://github.com/fish0048-ai/science-fair-club
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/fish0048-ai/science-fair-club)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/import?s=https://github.com/fish0048-ai/science-fair-club)
 
 17 週國中科展社團講義（對齊台灣全國中小學科學展覽會評審標準），可部署到 **Vercel**。右下角 AI 助教**只根據本站知識庫與教師指定問題**回答，不會當成萬能機器人。
+
+## GitHub ↔ Vercel 自動同步
+
+1. **一次匯入（若尚未連接）**：用 GitHub 登入 Vercel，匯入同一個 repo  
+   https://vercel.com/new/import?s=https://github.com/fish0048-ai/science-fair-club  
+   Production Branch 選 `main`。
+2. **之後**：只要 `git push origin main`，Vercel 會自動重新部署。不必手動上傳。
+3. Cursor 專案規則在 `.cursor/rules/`，之後改講義或網站都會依此流程 push。
 
 ## 本機預覽
 
@@ -18,17 +26,9 @@ npm run dev
 瀏覽器打開 http://localhost:3000  
 上課模式：http://localhost:3000/class
 
-## 部署到 Vercel
+## 部署到 Vercel（環境變數）
 
-1. 把本 repo 推上 GitHub。
-2. 到 [Vercel](https://vercel.com/new) 匯入這個 GitHub 專案。
-3. Framework 選 Next.js，其他用預設即可。
-4. （建議）在 Vercel → Settings → Environment Variables 加入其一：
-   - `OPENAI_API_KEY`（可再設 `OPENAI_MODEL=gpt-4o-mini`）
-   - 或 `GROQ_API_KEY`（Groq 的 OpenAI 相容 API）
-5. Deploy。
-
-沒有金鑰時，助教仍會**只從講義做檢索回答**，但文句較像摘錄。有金鑰後才會用模型把講義整理成完整句子，且系統提示會禁止超出範圍的問題。
+第一次匯入後，可在 Vercel → Settings → Environment Variables 加入 `OPENAI_API_KEY` 或 `GROQ_API_KEY`。沒有金鑰時，助教仍會只從講義檢索；有金鑰才會整理成完整句子。金鑰不要寫進 git。
 
 ## 限定 AI 只答你准的內容
 

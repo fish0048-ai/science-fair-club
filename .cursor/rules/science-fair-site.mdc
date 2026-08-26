@@ -1,0 +1,31 @@
+---
+description: 科展社團網站內容架構、上課模式與限定範圍 AI
+alwaysApply: true
+---
+
+# 科展社團網站規範
+
+這是國中科展社團的 Next.js 講義站，目標對齊台灣全國科展。改動要能投影上課，且 AI 只能答本站資料。
+
+## 改哪裡
+
+| 目的 | 路徑 |
+| --- | --- |
+| 17 週講義、學習單 | `國中科展社團課程/` |
+| AI 守則 | `content/ai/guardrails.md` |
+| 教師指定問答 | `content/ai/allowed-questions.md`（維持「問／答」格式） |
+| 上課投影 | `/class`（`app/class/`、`components/ClassPlayer.tsx`） |
+| 網站閱讀頁 | `app/`、`components/`、`lib/` |
+
+講義是知識庫本體；不要複製一份到別的資料夾以免不同步。`lib/nav.ts` 有新章才要加導覽。
+
+## 產品行為
+
+- 上課模式：大字投影、← → 翻頁、T 計時 120 分、對齊該週教學流程；不要拿掉快捷鍵。
+- `/api/chat` 只檢索本站檔案 + 指定問題；超出範圍要拒絕，禁止上網當萬能機器人。
+- 前 8 週講義已定；第 9–16 週等學生主題再寫，不要預先鎖死實驗步驟。
+
+## 文案與提交
+
+- 使用者介面與 commit 主旨用繁體中文。
+- 改完即 commit 並 push `main`，讓 GitHub／Vercel 自動同步（見 `github-vercel-workflow` 規則）。
