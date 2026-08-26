@@ -5,10 +5,20 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { hasTeacherContent, stripTeacherSections } from "@/lib/studentContent";
 
-export function MarkdownView({ markdown }: { markdown: string }) {
+export function MarkdownView({
+  markdown,
+  audience = "student",
+}: {
+  markdown: string;
+  audience?: "student" | "teacher";
+}) {
   const [showTeacher, setShowTeacher] = useState(false);
-  const canToggle = useMemo(() => hasTeacherContent(markdown), [markdown]);
-  const text = showTeacher ? markdown : stripTeacherSections(markdown);
+  const canToggle = useMemo(
+    () => audience === "student" && hasTeacherContent(markdown),
+    [audience, markdown],
+  );
+  const text =
+    audience === "teacher" || showTeacher ? markdown : stripTeacherSections(markdown);
 
   return (
     <>

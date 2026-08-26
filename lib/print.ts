@@ -1,4 +1,5 @@
 import { NAV, type NavItem, classSlug } from "./nav";
+import { ALL_PLANS, findPlan } from "./plans";
 export { stripTeacherSections } from "./studentContent";
 
 export function printSlug(item: NavItem) {
@@ -24,6 +25,22 @@ export function findPrintBundle(slug: string): { title: string; subtitle: string
       title: "國中科展社團課學習單",
       subtitle: "第 1–8 週學習單彙整",
       items: [item],
+    };
+  }
+  if (slug === "plans") {
+    return {
+      title: "國中科展社團課教師教案",
+      subtitle: "教師用　請勿發給學生　108 課綱素養導向",
+        items: ALL_PLANS as NavItem[],
+    };
+  }
+  if (slug.startsWith("plan-")) {
+    const plan = findPlan(slug.slice("plan-".length));
+    if (!plan) return null;
+    return {
+      title: plan.title,
+      subtitle: `${plan.group}　教師用，請勿發給學生`,
+      items: [plan] as NavItem[],
     };
   }
   const item = NAV.find((row) => printSlug(row) === slug);

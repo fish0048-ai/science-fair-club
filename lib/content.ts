@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import { NAV, type NavItem } from "./nav";
+import { ALL_PLANS } from "./plans";
 
 export type DocChunk = {
   id: string;
@@ -21,7 +22,7 @@ export function readContentFile(relativePath: string) {
   throw new Error(`找不到檔案：${relativePath}`);
 }
 
-export function getDoc(item: NavItem) {
+export function getDoc(item: Pick<NavItem, "title" | "href" | "file" | "group">) {
   return {
     ...item,
     markdown: readContentFile(item.file),
@@ -66,6 +67,9 @@ export function loadAllChunks(): DocChunk[] {
 
   const chunks: DocChunk[] = [];
   for (const item of NAV) {
+    chunks.push(...splitChunks(readContentFile(item.file), item));
+  }
+  for (const item of ALL_PLANS) {
     chunks.push(...splitChunks(readContentFile(item.file), item));
   }
   for (const extra of extraFiles) {

@@ -118,6 +118,9 @@ a:hover { text-decoration: underline; }
   cursor: pointer;
 }
 
+.plans-block { margin: 28px 0 8px; }
+.plans-block h2 { margin-bottom: 12px; }
+
 .doc {
   background: var(--card);
   border: 1px solid var(--line);

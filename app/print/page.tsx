@@ -53,6 +53,21 @@ export default function PrintIndexPage() {
           ))}
         </div>
       </section>
+
+      <section>
+        <h2>教師用（請勿發給學生）</h2>
+        <div className="print-pick-grid">
+          <Link href="/print/plans" className="print-pick featured">
+            <span>教師</span>
+            <strong>17 週教案全冊</strong>
+            <em>108 課綱素養導向　含教學流程與評量</em>
+          </Link>
+          <Link href="/plans" className="print-pick">
+            <strong>回教案區選單週</strong>
+            <em>也可在各週教案頁按「列印本週教案」</em>
+          </Link>
+        </div>
+      </section>
     </div>
   );
 }

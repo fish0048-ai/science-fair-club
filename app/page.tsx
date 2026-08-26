@@ -13,6 +13,8 @@ export default function HomePage() {
           <a href="/class">進入上課模式</a>
           {"　"}
           <a href="/print">列印講義（含封面）</a>
+          {"　"}
+          <a href="/plans">教師教案（108 課綱）</a>
         </p>
       </section>
       <MarkdownView markdown={overview.markdown} />
