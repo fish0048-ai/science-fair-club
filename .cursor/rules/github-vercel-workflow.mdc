@@ -1,31 +1,27 @@
 ---
-description: 國中科展社團專案的 GitHub／Vercel 同步與交付流程
+description: 每次更新完成都必須自動 commit 並 push 到 GitHub
 alwaysApply: true
 ---
 
-# GitHub ↔ Vercel 工作流程
+# 每次更新都要同步 GitHub
 
-本專案唯一遠端：`https://github.com/fish0048-ai/science-fair-club`（分支 `main`）。
-線上站由 **Vercel 監聽 GitHub `main`**：push 後自動生產部署。不要另開第二個 repo，也不要手動上傳檔案到 Vercel。
+本專案**覆蓋**「沒被要求就不要 commit」的預設。使用者已明確規定：
 
-## 完成功能後必做
+**只要這次對話改了檔案，任務結束前一定要 `commit` + `git push origin main`，不必再問。**
 
-1. 改講義、網站或 AI 設定後，先確認不要提交 `.env`、`.env.local`、`node_modules`、`.next`。
-2. 用繁中 Conventional Commits：`<type>: <主旨>`（如 `feat:` `fix:` `docs:` `chore:`）。
-3. `git push origin main`。Vercel 會跟 GitHub 自動同步，不必再跑一次部署指令。
-4. 回覆使用者時附 GitHub 連結；若剛 push，提醒等 Vercel 建置約 1 分鐘。
+遠端固定為 `https://github.com/fish0048-ai/science-fair-club` 的 `main`。push 成功後 Vercel 才會自動更新網站。
 
-## 第一次串 Vercel（只需一次）
+## 必做步驟
 
-若尚未連接，請使用者用 GitHub 登入後匯入同一 repo：
-https://vercel.com/new/import?s=https://github.com/fish0048-ai/science-fair-club
+1. `git status` / `git diff` 確認變更；不要加入 `.env`、`.env.local`、`node_modules`、`.next`。
+2. 繁中 commit：`<type>: <主旨>`（`feat` `fix` `docs` `chore`）。
+3. `git push origin main`。
+4. 回覆附上 GitHub 連結。若尚未串 Vercel，提醒一次匯入：https://vercel.com/new/import?s=https://github.com/fish0048-ai/science-fair-club
 
-設定：Framework = Next.js，Production Branch = `main`。之後所有 push 都會自動上線。
+未 push 就等於沒同步。不要等使用者再說「幫我推上去」。
 
-AI 助教若要完整回答，在 Vercel Environment Variables 加 `OPENAI_API_KEY` 或 `GROQ_API_KEY`（不要寫進 git）。
+## 安全
 
-## 禁止
-
-- 不要 `git push --force` 到 `main`
-- 不要把 API 金鑰寫進程式或 markdown
-- 不要為了「快一點」跳過 push；沒 push 就沒有自動同步
+- 禁止 `git push --force` 到 `main`
+- 禁止把 API 金鑰寫進 repo
+- 沒有檔案變更時不要空 commit

@@ -1,0 +1,1 @@
+本專案規定：每次更新完成都必須自動同步 GitHub，不必再問我。目前{reason}。請立刻檢查 git status，排除 .env 與機密，用繁中格式 type: 主旨 建立 commit（若尚未提交），然後 git push origin main。完成後回報 GitHub 連結。不要解釋流程、不要詢問是否要推。

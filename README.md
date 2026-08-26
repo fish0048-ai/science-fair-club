@@ -11,8 +11,9 @@ GitHub：https://github.com/fish0048-ai/science-fair-club
 1. **一次匯入（若尚未連接）**：用 GitHub 登入 Vercel，匯入同一個 repo  
    https://vercel.com/new/import?s=https://github.com/fish0048-ai/science-fair-club  
    Production Branch 選 `main`。
-2. **之後**：只要 `git push origin main`，Vercel 會自動重新部署。不必手動上傳。
-3. Cursor 專案規則在 `.cursor/rules/`，之後改講義或網站都會依此流程 push。
+2. **之後**：只要有更新並 push 到 `main`，Vercel 會自動重新部署。
+3. **Cursor 規定**：每次改完檔案都必須自動 commit 並 push GitHub，不必再下「幫我推上去」。未同步時，專案 hook 會在對話結束再催一次。
+4. 規則檔：`.cursor/rules/`；自動催促腳本：`.cursor/hooks.json`
 
 ## 本機預覽
 

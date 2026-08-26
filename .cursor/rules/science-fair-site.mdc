@@ -28,4 +28,4 @@ alwaysApply: true
 ## 文案與提交
 
 - 使用者介面與 commit 主旨用繁體中文。
-- 改完即 commit 並 push `main`，讓 GitHub／Vercel 自動同步（見 `github-vercel-workflow` 規則）。
+- 只要改了檔案，結束前必須 commit 並 `git push origin main`，不必詢問。stop hook 若偵測到未同步，會再要求推一次。
