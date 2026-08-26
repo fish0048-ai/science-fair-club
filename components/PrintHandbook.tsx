@@ -51,7 +51,7 @@ export function PrintHandbook({
         <div>
           <strong>列印講義</strong>
           <p>
-            封面沒有頁碼，內文從 1 起編。空白欄位可留給學生手寫。紙張選 A4 直向，頁首頁尾請保留（瀏覽器才印得出頁碼）。
+            封面沒有頁碼，內文從 1 起編。空白欄位可留給學生手寫。紙張選 A4 直向；請關閉瀏覽器預設的「頁首與頁尾」，以免多印網址，頁碼會由講義樣式自動出現。
           </p>
         </div>
         <div className="print-toolbar-fields">
