@@ -1,0 +1,23 @@
+# 依賴與建置
+node_modules
+.next
+out
+dist
+.vercel
+
+# 環境變數（含 API 金鑰，不可上傳）
+.env
+.env.local
+.env.*.local
+
+# 系統與編輯器
+.DS_Store
+Thumbs.db
+*.log
+.idea
+.vscode
+
+# 測試與快取
+coverage
+.turbo
+*.tsbuildinfo
