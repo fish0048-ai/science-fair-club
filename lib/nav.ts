@@ -84,6 +84,12 @@ export const NAV: NavItem[] = [
     file: "國中科展社團課程/附錄/D_紙直升機模板.md",
     group: "附錄",
   },
+  {
+    title: "附錄 E 進階統計（至多因子 ANOVA）",
+    href: "/docs/appendix-e",
+    file: "國中科展社團課程/附錄/E_進階統計與多因子變異數分析.md",
+    group: "附錄",
+  },
 ];
 
 export function findNav(href: string) {

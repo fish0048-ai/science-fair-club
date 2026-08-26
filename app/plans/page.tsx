@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { PLAN_GUIDE, WEEKLY_PLANS } from "@/lib/plans";
+import { OPTIONAL_STATS_PLAN, PLAN_GUIDE, WEEKLY_PLANS } from "@/lib/plans";
 
 export default function PlansIndexPage() {
   const early = WEEKLY_PLANS.filter((item) => item.phase === "前期");
@@ -13,7 +13,7 @@ export default function PlansIndexPage() {
         <h1>上課教案區</h1>
         <p>
           依十二年國教（108 課綱）自然科學領域素養導向教案格式編寫。第 1–8 週對齊已完成講義；第 9–16
-          週是研究教練教案，不預先鎖死實驗步驟。
+          週是研究教練教案，不預先鎖死實驗步驟。進階組可另用「選修　進階統計」接到多因子變異數分析。
         </p>
         <p>
           <Link href={PLAN_GUIDE.href}>先看格式與課綱對照</Link>
@@ -60,6 +60,17 @@ export default function PlansIndexPage() {
               <em>四面向發表</em>
             </Link>
           ))}
+        </div>
+      </section>
+
+      <section className="plans-block">
+        <h2>選修｜加深加廣</h2>
+        <div className="print-pick-grid">
+          <Link href={OPTIONAL_STATS_PLAN.href} className="print-pick featured">
+            <span>選修</span>
+            <strong>進階統計（至多因子 ANOVA）</strong>
+            <em>給已會第 7 週的組　對應附錄 E</em>
+          </Link>
         </div>
       </section>
     </>

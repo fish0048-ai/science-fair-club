@@ -44,7 +44,7 @@ const CATALOG: ArtEntry[] = [
   {
     src: "/class/data.jpg",
     alt: "把原始數據畫成圖表",
-    keywords: ["數據", "圖表", "統計", "平均", "全距", "長條", "折線", "散佈", "試算"],
+    keywords: ["數據", "圖表", "統計", "平均", "全距", "長條", "折線", "散佈", "試算", "變異數", "ANOVA", "檢定", "交互作用"],
   },
   {
     src: "/class/helicopter.jpg",

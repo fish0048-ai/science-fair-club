@@ -153,7 +153,18 @@ export const WEEKLY_PLANS: PlanItem[] = [
   group: "教師教案" as const,
 })) as PlanItem[];
 
-export const ALL_PLANS: PlanItem[] = [PLAN_GUIDE, ...WEEKLY_PLANS];
+export const OPTIONAL_STATS_PLAN: PlanItem = {
+  week: 0,
+  title: "選修　進階統計（至多因子 ANOVA）",
+  slug: "stats-plus",
+  href: "/plans/stats-plus",
+  file: "國中科展社團課程/教師教案/選修_進階統計.md",
+  group: "教師教案",
+  phase: "說明",
+  lectureHref: "/docs/appendix-e",
+};
+
+export const ALL_PLANS: PlanItem[] = [PLAN_GUIDE, ...WEEKLY_PLANS, OPTIONAL_STATS_PLAN];
 
 export function findPlan(slug: string) {
   return ALL_PLANS.find((item) => item.slug === slug) || null;
