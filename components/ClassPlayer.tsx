@@ -52,7 +52,10 @@ export function ClassPlayer({
   const [elapsed, setElapsed] = useState(0);
 
   const visible = useMemo(
-    () => (hideTeacher ? slides.filter((slide) => slide.kind !== "teacher") : slides),
+    () =>
+      hideTeacher
+        ? slides.filter((slide) => slide.kind !== "teacher" && slide.kind !== "flow")
+        : slides,
     [hideTeacher, slides],
   );
 

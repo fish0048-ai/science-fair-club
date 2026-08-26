@@ -1,3 +1,5 @@
+import { isTeacherHeading } from "./studentContent";
+
 export type SlideKind =
   | "title"
   | "goals"
@@ -36,7 +38,7 @@ function kindFromHeading(heading: string): SlideKind {
   if (/學習單|筆記卡|計畫卡/.test(heading)) return "worksheet";
   if (/作業/.test(heading)) return "homework";
   if (/迷思/.test(heading)) return "myth";
-  if (/教師|備課|總檢核/.test(heading)) return "teacher";
+  if (isTeacherHeading(heading)) return "teacher";
   return "other";
 }
 

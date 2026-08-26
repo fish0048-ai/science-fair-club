@@ -1,4 +1,5 @@
 import { NAV, type NavItem, classSlug } from "./nav";
+export { stripTeacherSections } from "./studentContent";
 
 export function printSlug(item: NavItem) {
   return classSlug(item);
@@ -34,14 +35,3 @@ export function findPrintBundle(slug: string): { title: string; subtitle: string
   };
 }
 
-export function stripTeacherSections(markdown: string) {
-  const first = markdown.search(/\n##\s/);
-  if (first === -1) return markdown;
-  const preamble = markdown.slice(0, first);
-  const sections = markdown.slice(first + 1).split(/\n(?=##\s)/);
-  const kept = sections.filter((section) => {
-    const heading = section.match(/^##\s+(.+)$/m)?.[1] || "";
-    return !/教師|備課|總檢核/.test(heading);
-  });
-  return `${preamble}\n\n${kept.join("\n\n")}`.trim();
-}

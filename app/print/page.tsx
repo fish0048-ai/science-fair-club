@@ -21,7 +21,7 @@ export default function PrintIndexPage() {
           <Link href="/print/full" className="print-pick featured">
             <span>推薦</span>
             <strong>第 1–8 週講義全冊</strong>
-            <em>封面＋班級座號姓名＋八章講義</em>
+            <em>封面＋班級座號姓名＋八章學生講義</em>
           </Link>
           <Link href="/print/worksheets" className="print-pick">
             <strong>學習單彙整</strong>

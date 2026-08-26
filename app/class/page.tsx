@@ -10,7 +10,7 @@ export default function ClassHomePage() {
       <header className="class-home-hero">
         <p>國中科展社團</p>
         <h1>上課模式</h1>
-        <p>全螢幕投影本章講義。左右鍵翻頁，T 開始 120 分鐘計時，會依教學流程提示「現在該做什麼」。</p>
+        <p>全螢幕投影本章講義。左右鍵翻頁，T 開始 120 分鐘計時。教學流程與教師備課預設隱藏，按 H 才顯示；計時開始後仍會提示現在時段。</p>
         <Link href="/" className="class-home-back">
           回閱讀模式
         </Link>
