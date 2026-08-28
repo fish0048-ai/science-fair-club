@@ -21,7 +21,7 @@ export function findPrintBundle(slug: string): { title: string; subtitle: string
   if (slug === "later") {
     return {
       title: "國中科展社團課後期講義",
-      subtitle: "第 4–17 週　發想後先模擬，再實驗驗證",
+      subtitle: "第 4–17 週　十步：先導、建模、兩輪驗證",
       items: laterLectureItems(),
     };
   }
