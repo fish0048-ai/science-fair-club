@@ -34,7 +34,7 @@ function kindFromHeading(heading: string): SlideKind {
   if (/學習目標/.test(heading)) return "goals";
   if (/教學流程/.test(heading)) return "flow";
   if (/核心講義/.test(heading)) return "lecture";
-  if (/課堂活動/.test(heading)) return "activity";
+  if (/課堂活動|討論題|實作站|練習題/.test(heading)) return "activity";
   if (/學習單|筆記卡|計畫卡/.test(heading) && !/附錄 B/.test(heading)) return "worksheet";
   if (/作業/.test(heading)) return "homework";
   if (/迷思/.test(heading)) return "myth";
