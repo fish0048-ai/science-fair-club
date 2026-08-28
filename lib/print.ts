@@ -1,4 +1,4 @@
-import { NAV, type NavItem, classSlug, detailLectureItems } from "./nav";
+import { NAV, type NavItem, classSlug, detailLectureItems, laterLectureItems } from "./nav";
 import { COHORT_DIAGNOSIS, findPlan, FLEX_GUIDE, OPTIONAL_STATS_PLAN, PLAN_GUIDE, WEEKLY_PLANS } from "./plans";
 export { stripTeacherSections } from "./studentContent";
 
@@ -18,6 +18,13 @@ export function findPrintBundle(slug: string): { title: string; subtitle: string
       items: studentLectureItems(),
     };
   }
+  if (slug === "later") {
+    return {
+      title: "國中科展社團課後期講義",
+      subtitle: "第 4–17 週　技能與教練，不鎖實驗步驟",
+      items: laterLectureItems(),
+    };
+  }
   if (slug === "chapters") {
     return {
       title: "國中科展社團課課後補充",
@@ -30,7 +37,7 @@ export function findPrintBundle(slug: string): { title: string; subtitle: string
     if (!item) return null;
     return {
       title: "國中科展社團課學習單",
-      subtitle: "第 1–3 週學習單與課後加練　每張可填寫、可撕下繳交",
+      subtitle: "第 1–17 週學習單與課後加練　每張可填寫、可撕下繳交",
       items: [item],
     };
   }

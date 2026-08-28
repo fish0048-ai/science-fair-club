@@ -146,6 +146,7 @@ export const WEEKLY_PLANS: PlanItem[] = [
   ...item,
   href: `/plans/${item.slug}`,
   group: "教師教案" as const,
+  lectureHref: item.lectureHref ?? `/docs/later-${String(item.week).padStart(2, "0")}`,
 })) as PlanItem[];
 
 export const DETAIL_PLANS: PlanItem[] = [

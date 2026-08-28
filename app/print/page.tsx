@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { printSlug, studentLectureItems } from "@/lib/print";
-import { detailLectureItems, NAV } from "@/lib/nav";
+import { detailLectureItems, laterLectureItems, NAV } from "@/lib/nav";
 
 export default function PrintIndexPage() {
   const weeks = studentLectureItems();
@@ -24,6 +24,10 @@ export default function PrintIndexPage() {
             <strong>第 1–3 週講義</strong>
             <em>封面＋班級座號姓名＋三週上課講義</em>
           </Link>
+          <Link href="/print/later" className="print-pick">
+            <strong>第 4–17 週講義</strong>
+            <em>後期技能與教練，不鎖實驗步驟</em>
+          </Link>
           <Link href="/print/chapters" className="print-pick">
             <strong>課後補充（第 1–8 章）</strong>
             <em>課後複習，需要時再印</em>
@@ -39,6 +43,18 @@ export default function PrintIndexPage() {
         <h2>只印單週</h2>
         <div className="print-pick-grid">
           {weeks.map((item) => (
+            <Link key={item.href} href={`/print/${printSlug(item)}`} className="print-pick">
+              <strong>{item.title}</strong>
+              <em>單章封面＋講義</em>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section>
+        <h2>後期講義（單週）</h2>
+        <div className="print-pick-grid">
+          {laterLectureItems().map((item) => (
             <Link key={item.href} href={`/print/${printSlug(item)}`} className="print-pick">
               <strong>{item.title}</strong>
               <em>單章封面＋講義</em>

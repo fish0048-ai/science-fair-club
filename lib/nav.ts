@@ -31,6 +31,90 @@ export const NAV: NavItem[] = [
     group: "上課講義",
   },
   {
+    title: "第 4 週 主題定案與分組",
+    href: "/docs/later-04",
+    file: "國中科展社團課程/後期講義/第04週_主題定案與分組.md",
+    group: "後期講義",
+  },
+  {
+    title: "第 5 週 研究計畫書",
+    href: "/docs/later-05",
+    file: "國中科展社團課程/後期講義/第05週_研究計畫書.md",
+    group: "後期講義",
+  },
+  {
+    title: "第 6 週 預實驗",
+    href: "/docs/later-06",
+    file: "國中科展社團課程/後期講義/第06週_預實驗.md",
+    group: "後期講義",
+  },
+  {
+    title: "第 7 週 正式實驗 I",
+    href: "/docs/later-07",
+    file: "國中科展社團課程/後期講義/第07週_正式實驗I.md",
+    group: "後期講義",
+  },
+  {
+    title: "第 8 週 正式實驗 II",
+    href: "/docs/later-08",
+    file: "國中科展社團課程/後期講義/第08週_正式實驗II.md",
+    group: "後期講義",
+  },
+  {
+    title: "第 9 週 深化或轉向",
+    href: "/docs/later-09",
+    file: "國中科展社團課程/後期講義/第09週_深化或轉向.md",
+    group: "後期講義",
+  },
+  {
+    title: "第 10 週 分析、討論與限制",
+    href: "/docs/later-10",
+    file: "國中科展社團課程/後期講義/第10週_分析討論與限制.md",
+    group: "後期講義",
+  },
+  {
+    title: "第 11 週 說明書、海報與口試",
+    href: "/docs/later-11",
+    file: "國中科展社團課程/後期講義/第11週_說明書海報與口試.md",
+    group: "後期講義",
+  },
+  {
+    title: "第 12 週 第三批數據或再現",
+    href: "/docs/later-12",
+    file: "國中科展社團課程/後期講義/第12週_第三批數據或再現.md",
+    group: "後期講義",
+  },
+  {
+    title: "第 13 週 核心圖表定稿",
+    href: "/docs/later-13",
+    file: "國中科展社團課程/後期講義/第13週_核心圖表定稿.md",
+    group: "後期講義",
+  },
+  {
+    title: "第 14 週 討論與限制加深",
+    href: "/docs/later-14",
+    file: "國中科展社團課程/後期講義/第14週_討論與限制加深.md",
+    group: "後期講義",
+  },
+  {
+    title: "第 15 週 口試題庫",
+    href: "/docs/later-15",
+    file: "國中科展社團課程/後期講義/第15週_口試題庫.md",
+    group: "後期講義",
+  },
+  {
+    title: "第 16 週 模擬評審與修改清單",
+    href: "/docs/later-16",
+    file: "國中科展社團課程/後期講義/第16週_模擬評審與修改清單.md",
+    group: "後期講義",
+  },
+  {
+    title: "第 17 週 成果發表",
+    href: "/docs/later-17",
+    file: "國中科展社團課程/後期講義/第17週_成果發表.md",
+    group: "後期講義",
+  },
+  {
     title: "第 1 章 認識全國科展",
     href: "/docs/week-01",
     file: "國中科展社團課程/前半段講義/第01章_認識全國科展.md",
@@ -136,9 +220,15 @@ export function findNavByClassSlug(slug: string) {
 }
 
 export function classLessons() {
-  return NAV.filter((item) => item.group === "總覽" || item.group === "上課講義");
+  return NAV.filter(
+    (item) => item.group === "總覽" || item.group === "上課講義" || item.group === "後期講義",
+  );
 }
 
 export function detailLectureItems() {
   return NAV.filter((item) => item.group === "課後補充");
+}
+
+export function laterLectureItems() {
+  return NAV.filter((item) => item.group === "後期講義");
 }

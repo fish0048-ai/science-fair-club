@@ -9,6 +9,7 @@ export function generateStaticParams() {
   return [
     { slug: "full" },
     { slug: "chapters" },
+    { slug: "later" },
     { slug: "worksheets" },
     { slug: "plans" },
     ...NAV.map((item) => ({ slug: classSlug(item) })),
