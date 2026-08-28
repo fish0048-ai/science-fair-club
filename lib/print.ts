@@ -1,5 +1,5 @@
-import { NAV, type NavItem, classSlug } from "./nav";
-import { ALL_PLANS, findPlan } from "./plans";
+import { NAV, type NavItem, classSlug, detailLectureItems } from "./nav";
+import { ALL_PLANS, findPlan, FLEX_GUIDE, OPTIONAL_STATS_PLAN, PLAN_GUIDE, WEEKLY_PLANS } from "./plans";
 export { stripTeacherSections } from "./studentContent";
 
 export function printSlug(item: NavItem) {
@@ -14,8 +14,15 @@ export function findPrintBundle(slug: string): { title: string; subtitle: string
   if (slug === "full") {
     return {
       title: "國中科展社團課講義",
-      subtitle: "第 1–8 週　基本能力（對齊全國科展）",
+      subtitle: "第 1–3 週濃縮　基本能力（對齊全國科展）",
       items: studentLectureItems(),
+    };
+  }
+  if (slug === "chapters") {
+    return {
+      title: "國中科展社團課分章詳解",
+      subtitle: "原第 1–8 章　課後補讀用",
+      items: detailLectureItems(),
     };
   }
   if (slug === "worksheets") {
@@ -23,7 +30,7 @@ export function findPrintBundle(slug: string): { title: string; subtitle: string
     if (!item) return null;
     return {
       title: "國中科展社團課學習單",
-      subtitle: "第 1–8 週＋選修 E　每張可填寫、可撕下繳交",
+      subtitle: "濃縮三週＋分章詳解＋選修 E　每張可填寫、可撕下繳交",
       items: [item],
     };
   }
@@ -31,7 +38,7 @@ export function findPrintBundle(slug: string): { title: string; subtitle: string
     return {
       title: "國中科展社團課教師教案",
       subtitle: "教師用　請勿發給學生　108 課綱素養導向",
-        items: ALL_PLANS as NavItem[],
+        items: [PLAN_GUIDE, FLEX_GUIDE, ...WEEKLY_PLANS, OPTIONAL_STATS_PLAN] as NavItem[],
     };
   }
   if (slug.startsWith("plan-")) {

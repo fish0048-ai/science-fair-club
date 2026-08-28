@@ -8,6 +8,7 @@ import { findPrintBundle, stripTeacherSections } from "@/lib/print";
 export function generateStaticParams() {
   return [
     { slug: "full" },
+    { slug: "chapters" },
     { slug: "worksheets" },
     { slug: "plans" },
     ...NAV.map((item) => ({ slug: classSlug(item) })),

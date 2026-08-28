@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { OPTIONAL_STATS_PLAN, PLAN_GUIDE, WEEKLY_PLANS } from "@/lib/plans";
+import { DETAIL_PLANS, FLEX_GUIDE, OPTIONAL_STATS_PLAN, PLAN_GUIDE, WEEKLY_PLANS } from "@/lib/plans";
 
 export default function PlansIndexPage() {
   const early = WEEKLY_PLANS.filter((item) => item.phase === "前期");
@@ -12,11 +12,13 @@ export default function PlansIndexPage() {
         <p>教師用　請勿發給學生</p>
         <h1>上課教案區</h1>
         <p>
-          依十二年國教（108 課綱）自然科學領域素養導向教案格式編寫。第 1–8 週對齊已完成講義；第 9–16
-          週是研究教練教案，不預先鎖死實驗步驟。進階組可另用「選修　進階統計」接到多因子變異數分析。
+          依十二年國教（108 課綱）自然科學領域素養導向教案格式編寫。現行前期為第 1–3 週濃縮課；第 4
+          週起研究教練教案，不預先鎖死實驗步驟。原 8 週分章教案在「詳解」。進階組可用選修統計接到多因子 ANOVA。
         </p>
         <p>
           <Link href={PLAN_GUIDE.href}>先看格式與課綱對照</Link>
+          {"　"}
+          <Link href={FLEX_GUIDE.href}>第 12–16 週彈性週說明</Link>
           {"　"}
           <Link href="/print/plans">列印全學期教案</Link>
           {"　"}
@@ -64,12 +66,25 @@ export default function PlansIndexPage() {
       </section>
 
       <section className="plans-block">
+        <h2>分章詳解教案（原 8 週節奏，課後或補課用）</h2>
+        <div className="print-pick-grid">
+          {DETAIL_PLANS.map((item) => (
+            <Link key={item.slug} href={item.href} className="print-pick">
+              <span>原第 {item.week} 週</span>
+              <strong>{item.title.replace(/^詳解　原第 \d+ 週　/, "")}</strong>
+              <em>非現行課表</em>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section className="plans-block">
         <h2>選修｜加深加廣</h2>
         <div className="print-pick-grid">
           <Link href={OPTIONAL_STATS_PLAN.href} className="print-pick featured">
             <span>選修</span>
             <strong>進階統計（至多因子 ANOVA）</strong>
-            <em>給已會第 7 週的組　對應附錄 E</em>
+            <em>給已會濃縮第 3 週圖表的組　對應附錄 E</em>
           </Link>
         </div>
       </section>

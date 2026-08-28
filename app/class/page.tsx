@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { pickClassArtForHref } from "@/lib/classArt";
-import { classLessons, classSlug, NAV } from "@/lib/nav";
+import { classLessons, classSlug, detailLectureItems, NAV } from "@/lib/nav";
 
 export default function ClassHomePage() {
   const lessons = classLessons();
+  const details = detailLectureItems();
   const extras = NAV.filter((item) => item.group === "附錄");
 
   return (
@@ -17,7 +18,7 @@ export default function ClassHomePage() {
         </Link>
       </header>
 
-      <h2>選本週要上的課</h2>
+      <h2>選本週要上的課（濃縮三週）</h2>
       <div className="class-cards">
         {lessons.map((item, index) => {
           const art = pickClassArtForHref(item.href, item.title);
@@ -27,6 +28,21 @@ export default function ClassHomePage() {
               <span>{item.group === "總覽" ? "總覽" : `第 ${index} 週`}</span>
               <strong>{item.title}</strong>
               <em>開始上課</em>
+            </Link>
+          );
+        })}
+      </div>
+
+      <h2>分章詳解（補課或投影原 8 章）</h2>
+      <div className="class-cards compact">
+        {details.map((item) => {
+          const art = pickClassArtForHref(item.href, item.title);
+          return (
+            <Link key={item.href} href={`/class/${classSlug(item)}`} className="class-card">
+              <img src={art.src} alt="" />
+              <span>詳解</span>
+              <strong>{item.title}</strong>
+              <em>開始投影</em>
             </Link>
           );
         })}

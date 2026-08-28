@@ -13,52 +13,70 @@ export const NAV: NavItem[] = [
     group: "總覽",
   },
   {
-    title: "第 1 章 認識全國科展",
+    title: "第 1 週 科展、問題與變因",
+    href: "/docs/boot-01",
+    file: "國中科展社團課程/前半段講義/濃縮第01週_科展問題與變因.md",
+    group: "前期講義",
+  },
+  {
+    title: "第 2 週 測量、日誌與文獻",
+    href: "/docs/boot-02",
+    file: "國中科展社團課程/前半段講義/濃縮第02週_測量日誌與文獻.md",
+    group: "前期講義",
+  },
+  {
+    title: "第 3 週 數據、迷你探究與候選題",
+    href: "/docs/boot-03",
+    file: "國中科展社團課程/前半段講義/濃縮第03週_數據迷你探究與候選題.md",
+    group: "前期講義",
+  },
+  {
+    title: "詳解第 1 章 認識全國科展",
     href: "/docs/week-01",
     file: "國中科展社團課程/前半段講義/第01章_認識全國科展.md",
-    group: "前期講義",
+    group: "分章詳解",
   },
   {
-    title: "第 2 章 科學探究與好問題",
+    title: "詳解第 2 章 科學探究與好問題",
     href: "/docs/week-02",
     file: "國中科展社團課程/前半段講義/第02章_科學探究與好問題.md",
-    group: "前期講義",
+    group: "分章詳解",
   },
   {
-    title: "第 3 章 實驗設計與三變因",
+    title: "詳解第 3 章 實驗設計與三變因",
     href: "/docs/week-03",
     file: "國中科展社團課程/前半段講義/第03章_實驗設計與三變因.md",
-    group: "前期講義",
+    group: "分章詳解",
   },
   {
-    title: "第 4 章 觀察測量誤差與安全",
+    title: "詳解第 4 章 觀察測量誤差與安全",
     href: "/docs/week-04",
     file: "國中科展社團課程/前半段講義/第04章_觀察測量誤差與安全.md",
-    group: "前期講義",
+    group: "分章詳解",
   },
   {
-    title: "第 5 章 研究日誌與學術倫理",
+    title: "詳解第 5 章 研究日誌與學術倫理",
     href: "/docs/week-05",
     file: "國中科展社團課程/前半段講義/第05章_研究日誌學術倫理與引用.md",
-    group: "前期講義",
+    group: "分章詳解",
   },
   {
-    title: "第 6 章 文獻檢索與作品拆解",
+    title: "詳解第 6 章 文獻檢索與作品拆解",
     href: "/docs/week-06",
     file: "國中科展社團課程/前半段講義/第06章_文獻檢索與優勝作品拆解.md",
-    group: "前期講義",
+    group: "分章詳解",
   },
   {
-    title: "第 7 章 數據圖表與基礎統計",
+    title: "詳解第 7 章 數據圖表與基礎統計",
     href: "/docs/week-07",
     file: "國中科展社團課程/前半段講義/第07章_數據整理圖表與基礎統計.md",
-    group: "前期講義",
+    group: "分章詳解",
   },
   {
-    title: "第 8 章 迷你探究與主題發想",
+    title: "詳解第 8 章 迷你探究與主題發想",
     href: "/docs/week-08",
     file: "國中科展社團課程/前半段講義/第08章_迷你探究實作與主題發想.md",
-    group: "前期講義",
+    group: "分章詳解",
   },
   {
     title: "附錄 A 選題漏斗",
@@ -113,4 +131,8 @@ export function findNavByClassSlug(slug: string) {
 
 export function classLessons() {
   return NAV.filter((item) => item.group === "總覽" || item.group === "前期講義");
+}
+
+export function detailLectureItems() {
+  return NAV.filter((item) => item.group === "分章詳解");
 }
