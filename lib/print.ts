@@ -7,21 +7,21 @@ export function printSlug(item: NavItem) {
 }
 
 export function studentLectureItems() {
-  return NAV.filter((item) => item.group === "前期講義");
+  return NAV.filter((item) => item.group === "上課講義");
 }
 
 export function findPrintBundle(slug: string): { title: string; subtitle: string; items: NavItem[] } | null {
   if (slug === "full") {
     return {
       title: "國中科展社團課講義",
-      subtitle: "第 1–3 週濃縮　基本能力（對齊全國科展）",
+      subtitle: "第 1–3 週　對齊全國科展",
       items: studentLectureItems(),
     };
   }
   if (slug === "chapters") {
     return {
-      title: "國中科展社團課分章詳解",
-      subtitle: "原第 1–8 章　課後補讀用",
+      title: "國中科展社團課課後補充",
+      subtitle: "第 1–8 章　課後複習用",
       items: detailLectureItems(),
     };
   }
@@ -30,7 +30,7 @@ export function findPrintBundle(slug: string): { title: string; subtitle: string
     if (!item) return null;
     return {
       title: "國中科展社團課學習單",
-      subtitle: "濃縮三週＋分章詳解＋選修 E　每張可填寫、可撕下繳交",
+      subtitle: "第 1–3 週學習單與課後加練　每張可填寫、可撕下繳交",
       items: [item],
     };
   }

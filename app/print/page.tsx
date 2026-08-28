@@ -21,12 +21,12 @@ export default function PrintIndexPage() {
         <div className="print-pick-grid">
           <Link href="/print/full" className="print-pick featured">
             <span>推薦</span>
-            <strong>第 1–3 週濃縮講義</strong>
+            <strong>第 1–3 週講義</strong>
             <em>封面＋班級座號姓名＋三週上課講義</em>
           </Link>
           <Link href="/print/chapters" className="print-pick">
-            <strong>分章詳解（原 8 章）</strong>
-            <em>課後補讀，不必全班印</em>
+            <strong>課後補充（第 1–8 章）</strong>
+            <em>課後複習，需要時再印</em>
           </Link>
           <Link href="/print/worksheets" className="print-pick">
             <strong>學習單彙整</strong>
@@ -36,7 +36,7 @@ export default function PrintIndexPage() {
       </section>
 
       <section>
-        <h2>只印單週（濃縮課）</h2>
+        <h2>只印單週</h2>
         <div className="print-pick-grid">
           {weeks.map((item) => (
             <Link key={item.href} href={`/print/${printSlug(item)}`} className="print-pick">
@@ -48,12 +48,12 @@ export default function PrintIndexPage() {
       </section>
 
       <section>
-        <h2>分章詳解（單章）</h2>
+        <h2>課後補充（單章）</h2>
         <div className="print-pick-grid">
           {details.map((item) => (
             <Link key={item.href} href={`/print/${printSlug(item)}`} className="print-pick">
               <strong>{item.title}</strong>
-              <em>課後補讀</em>
+              <em>課後複習</em>
             </Link>
           ))}
         </div>

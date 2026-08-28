@@ -18,7 +18,7 @@ export default function ClassHomePage() {
         </Link>
       </header>
 
-      <h2>選本週要上的課（濃縮三週）</h2>
+      <h2>選本週要上的課</h2>
       <div className="class-cards">
         {lessons.map((item, index) => {
           const art = pickClassArtForHref(item.href, item.title);
@@ -33,14 +33,14 @@ export default function ClassHomePage() {
         })}
       </div>
 
-      <h2>分章詳解（補課或投影原 8 章）</h2>
+      <h2>課後補充（需要時再投影）</h2>
       <div className="class-cards compact">
         {details.map((item) => {
           const art = pickClassArtForHref(item.href, item.title);
           return (
             <Link key={item.href} href={`/class/${classSlug(item)}`} className="class-card">
               <img src={art.src} alt="" />
-              <span>詳解</span>
+              <span>補充</span>
               <strong>{item.title}</strong>
               <em>開始投影</em>
             </Link>
