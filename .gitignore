@@ -17,6 +17,9 @@ Thumbs.db
 .idea
 .vscode
 
+# 本機掃描／個資暫存（不可上傳）
+tmp-form-pages
+
 # 測試與快取
 coverage
 .turbo

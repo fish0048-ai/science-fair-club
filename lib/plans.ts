@@ -240,9 +240,21 @@ export const FLEX_GUIDE: PlanItem = {
   phase: "說明",
 };
 
+export const COHORT_DIAGNOSIS: PlanItem = {
+  week: 0,
+  title: "115 本屆甄選稿程度與上課調整",
+  slug: "cohort-115",
+  href: "/plans/cohort-115",
+  file: "國中科展社團課程/教師教案/本屆115題型診斷.md",
+  group: "教師教案",
+  phase: "說明",
+  lectureHref: "/docs/appendix-f",
+};
+
 export const ALL_PLANS: PlanItem[] = [
   PLAN_GUIDE,
   FLEX_GUIDE,
+  COHORT_DIAGNOSIS,
   ...WEEKLY_PLANS,
   ...DETAIL_PLANS,
   OPTIONAL_STATS_PLAN,

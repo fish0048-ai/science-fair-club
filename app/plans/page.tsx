@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { DETAIL_PLANS, FLEX_GUIDE, OPTIONAL_STATS_PLAN, PLAN_GUIDE, WEEKLY_PLANS } from "@/lib/plans";
+import { COHORT_DIAGNOSIS, DETAIL_PLANS, FLEX_GUIDE, OPTIONAL_STATS_PLAN, PLAN_GUIDE, WEEKLY_PLANS } from "@/lib/plans";
 
 export default function PlansIndexPage() {
   const early = WEEKLY_PLANS.filter((item) => item.phase === "前期");
@@ -12,11 +12,13 @@ export default function PlansIndexPage() {
         <p>教師用　請勿發給學生</p>
         <h1>上課教案區</h1>
         <p>
-          依十二年國教（108 課綱）自然科學領域素養導向教案格式編寫。現行前期為第 1–3 週濃縮課；第 4
+          依十二年國教（108 課綱）自然科學領域素養導向教案格式編寫。現行前期為第 1–3 週濃縮課，並依本屆甄選稿調整程度；第 4
           週起研究教練教案，不預先鎖死實驗步驟。原 8 週分章教案在「詳解」。進階組可用選修統計接到多因子 ANOVA。
         </p>
         <p>
           <Link href={PLAN_GUIDE.href}>先看格式與課綱對照</Link>
+          {"　"}
+          <Link href={COHORT_DIAGNOSIS.href}>115 本屆題型診斷</Link>
           {"　"}
           <Link href={FLEX_GUIDE.href}>第 12–16 週彈性週說明</Link>
           {"　"}

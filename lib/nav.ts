@@ -108,6 +108,12 @@ export const NAV: NavItem[] = [
     file: "國中科展社團課程/附錄/E_進階統計與多因子變異數分析.md",
     group: "附錄",
   },
+  {
+    title: "附錄 F 本屆題型教練卡",
+    href: "/docs/appendix-f",
+    file: "國中科展社團課程/附錄/F_本屆題型教練卡.md",
+    group: "附錄",
+  },
 ];
 
 export function findNav(href: string) {

@@ -1,5 +1,5 @@
 import { NAV, type NavItem, classSlug, detailLectureItems } from "./nav";
-import { ALL_PLANS, findPlan, FLEX_GUIDE, OPTIONAL_STATS_PLAN, PLAN_GUIDE, WEEKLY_PLANS } from "./plans";
+import { COHORT_DIAGNOSIS, findPlan, FLEX_GUIDE, OPTIONAL_STATS_PLAN, PLAN_GUIDE, WEEKLY_PLANS } from "./plans";
 export { stripTeacherSections } from "./studentContent";
 
 export function printSlug(item: NavItem) {
@@ -38,7 +38,7 @@ export function findPrintBundle(slug: string): { title: string; subtitle: string
     return {
       title: "國中科展社團課教師教案",
       subtitle: "教師用　請勿發給學生　108 課綱素養導向",
-        items: [PLAN_GUIDE, FLEX_GUIDE, ...WEEKLY_PLANS, OPTIONAL_STATS_PLAN] as NavItem[],
+        items: [PLAN_GUIDE, FLEX_GUIDE, COHORT_DIAGNOSIS, ...WEEKLY_PLANS, OPTIONAL_STATS_PLAN] as NavItem[],
     };
   }
   if (slug.startsWith("plan-")) {
